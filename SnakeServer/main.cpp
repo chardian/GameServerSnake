@@ -228,7 +228,7 @@ void recvThread(ClientData *ct, int i)
     }
     
     bzero(recv_msg, 1024);
-        printf("get data now from %d\n\n", ct->m_socket);
+    printf("get data now from %d\n\n", ct->m_socket);
     bzero(recv_msg, 1024);
     ssize_t n = recv(ct->m_socket, recv_msg, 1024, 0);
         if(n == 0)
@@ -261,7 +261,6 @@ void recvThread(ClientData *ct, int i)
             
             if(totalLen > 8)
             {
-                
                 //已经够用来读取数据了
                 ct->submitRead(byteSizeLen, 4);
                 ct->submitRead(byteMsgID, 4);
@@ -280,9 +279,6 @@ void recvThread(ClientData *ct, int i)
                 md.msgData = msgData;
                 md.socket = ct->m_socket;
                 MessageController::Instance()->addRecv(md);
-                
-                
-                
             }
             
         printf("%d: %s \n\n" , ct->m_socket,recv_msg);
