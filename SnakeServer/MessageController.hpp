@@ -35,6 +35,8 @@ public:
     void send(MESSAGE_DATA);
     
     void OnLoginReq(BYTE buff[], int size, int sock);
+    void OnEnterRoomReq(BYTE buff[], int size, int sock);
+    void OnChessReq(BYTE buff[], int size, int sock);
 private:
     static int m_serverSocket;
     

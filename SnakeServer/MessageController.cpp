@@ -86,6 +86,8 @@ void MessageController::recv(MESSAGE_DATA data)
         case PROTOCOL::__LoginReq :
             OnLoginReq(data.msgData, data.msgLen, data.socket);
             break;
+        case PROTOCOL::__EnterRoomReq:
+            
         default:
             break;
     }
@@ -105,4 +107,20 @@ void MessageController::OnLoginReq(BYTE buff[], int size, int sock)
     req->ParseFromArray(buff, size);
     GameNetLogic::getInstance()->OnLoginReq(req, sock);
     printf("on login now user name %s, protoid %d\n\n",req->name().c_str(), req->proid());
+    delete req;
+}
+
+void MessageController::OnEnterRoomReq(BYTE buff[], int size, int sock)
+{
+    EnterRoomReq* req = new EnterRoomReq();
+    req->ParseFromArray(buff, size);
+    GameNetLogic::getInstance()->OnEnterRoomReq(req, sock);
+    delete req;
+}
+void MessageController::OnChessReq(BYTE buff[], int size, int sock)
+{
+    ChessReq * req = new ChessReq();
+    req->ParseFromArray(buff, size);
+    GameNetLogic::getInstance()->OnChessReq(req, sock);
+    delete req;
 }

@@ -7,7 +7,7 @@
 //
 
 #include "GameLobby.hpp"
-
+#include <stdio.h>
 
 GameLobby* GameLobby::_instance = nullptr;
 GameLobby* GameLobby::getInstance()
@@ -29,9 +29,7 @@ GameLobby::GameLobby()
         it->m_count = 0;
         it->roomName = new char[16];
         it->m_roomID = i;
-        strcpy(it->roomName,"Room");
-        char c = i;
-        strcat(it->roomName, &c);
+        sprintf(it->roomName, "Room%d",i);
     }
 }
 
@@ -42,6 +40,19 @@ GameLobby::~GameLobby()
         delete m_rooms;
     }
     
+}
+
+GameRoom* GameLobby::getRoomByID(int id)
+{
+    vector<GameRoom>::iterator it;
+    int i =0;
+    for (it = m_rooms->begin(); it != m_rooms->end(); it++,i++) {
+        if(it->m_roomID == id)
+        {
+            return &*it;
+        }
+    }
+    return nullptr;
 }
 
 vector<GameRoom>* GameLobby::getAllRoom()

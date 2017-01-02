@@ -21,6 +21,7 @@ public:
     vector<GameRoom>* getAllRoom();
     vector<GameRoom>* getAvaibleRoom();
     static GameLobby* getInstance();
+    GameRoom* getRoomByID(int id);
     GameLobby();
     ~GameLobby();
 };
