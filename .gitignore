@@ -1,0 +1,17 @@
+**.o
+google/*
+**/.DS_Store
+
+*.pbxproj
+
+*.xcworkspacedata
+
+*.xcuserstate
+
+*.xcexplist
+
+*.xcbkptlist
+
+*.xcscheme
+
+*.plist
